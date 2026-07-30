@@ -8,6 +8,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
@@ -22,6 +23,7 @@ const App = () => (
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/:id" element={<BlogDetailPage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
     <Footer />

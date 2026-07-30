@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import BrandLogo from './BrandLogo';
 
 const navItems = [
@@ -7,7 +7,7 @@ const navItems = [
   { id: 'menu', label: 'Menu', to: '/products', type: 'route' },
   { id: 'blog', label: 'Blog', to: '/blog', type: 'route' },
   { id: 'about', label: 'About', to: '/about', type: 'route' },
-  { id: 'contact', label: 'Liên hệ', to: '/#footer', type: 'link' },
+  { id: 'contact', label: 'Liên hệ', to: '/contact', type: 'route' },
 ];
 
 const UserIcon = () => (
@@ -38,34 +38,19 @@ const Header = () => {
           className={`main-nav${isOpen ? ' main-nav--open' : ''}`}
           aria-label="Điều hướng chính"
         >
-          {navItems.map((item) => {
-            if (item.type === 'route') {
-              return (
-                <NavLink
-                  key={item.id}
-                  to={item.to}
-                  end={item.end}
-                  className={({ isActive }) =>
-                    `main-nav__link${isActive ? ' main-nav__link--active' : ''}`
-                  }
-                  onClick={closeMenu}
-                >
-                  {item.label}
-                </NavLink>
-              );
-            }
-
-            return (
-              <Link
-                key={item.id}
-                className="main-nav__link"
-                to={item.to}
-                onClick={closeMenu}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {navItems.map((item) => (
+            <NavLink
+              key={item.id}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) =>
+                `main-nav__link${isActive ? ' main-nav__link--active' : ''}`
+              }
+              onClick={closeMenu}
+            >
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="header-actions" aria-label="Tài khoản và giỏ hàng">
