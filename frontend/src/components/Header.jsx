@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import BrandLogo from './BrandLogo';
 
 const navItems = [
-  { id: 'home', label: 'Trang chủ', href: '#top' },
-  { id: 'menu', label: 'Menu', href: '#menu' },
-  { id: 'promotion', label: 'Khuyến mãi', href: '#newsletter' },
-  { id: 'about', label: 'Về TaloFood', href: '#features' },
-  { id: 'contact', label: 'Liên hệ', href: '#footer' },
+  { id: 'home', label: 'Trang chủ', to: '/', type: 'route', end: true },
+  { id: 'menu', label: 'Menu', to: '/products', type: 'route' },
+  { id: 'promotion', label: 'Khuyến mãi', to: '/#newsletter', type: 'link' },
+  { id: 'about', label: 'Về TaloFood', to: '/#features', type: 'link' },
+  { id: 'contact', label: 'Liên hệ', to: '/#footer', type: 'link' },
 ];
 
 const UserIcon = () => (
@@ -37,18 +38,34 @@ const Header = () => {
           className={`main-nav${isOpen ? ' main-nav--open' : ''}`}
           aria-label="Điều hướng chính"
         >
-          {navItems.map((item, index) => (
-            <a
-              key={item.id}
-              className={`main-nav__link${
-                index === 0 ? ' main-nav__link--active' : ''
-              }`}
-              href={item.href}
-              onClick={closeMenu}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            if (item.type === 'route') {
+              return (
+                <NavLink
+                  key={item.id}
+                  to={item.to}
+                  end={item.end}
+                  className={({ isActive }) =>
+                    `main-nav__link${isActive ? ' main-nav__link--active' : ''}`
+                  }
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </NavLink>
+              );
+            }
+
+            return (
+              <Link
+                key={item.id}
+                className="main-nav__link"
+                to={item.to}
+                onClick={closeMenu}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="header-actions" aria-label="Tài khoản và giỏ hàng">
@@ -56,11 +73,7 @@ const Header = () => {
             <UserIcon />
           </button>
 
-          <button
-            type="button"
-            className="icon-button icon-button--cart"
-            aria-label="Giỏ hàng"
-          >
+          <button type="button" className="icon-button icon-button--cart" aria-label="Giỏ hàng">
             <CartIcon />
           </button>
 

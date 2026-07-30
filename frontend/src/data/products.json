@@ -3,8 +3,8 @@
     "id": 1,
     "name": "Gà Rán Giòn Cay (2 Miếng)",
     "price": 79000,
-    "category": "Gà Rán",
-    "description": "Phần gà truyền thống tẩm bột cay giòn tan.",
+    "category": "Gà rán",
+    "description": "Hai miếng gà tươi tẩm bột cay, chiên vàng giòn bên ngoài và mềm mọng bên trong.",
     "featured": true,
     "badge": "HOT",
     "imageKey": "friedChicken",
@@ -15,8 +15,9 @@
     "name": "Burger Bò Phô Mai Đặc Biệt",
     "price": 65000,
     "category": "Burger",
-    "description": "Thịt bò nhập khẩu kết hợp cùng phô mai tan chảy.",
+    "description": "Thịt bò đậm vị kết hợp phô mai tan chảy, rau tươi và sốt đặc biệt TaloFood.",
     "featured": true,
+    "badge": "BÁN CHẠY",
     "imageKey": "burger",
     "objectPosition": "center"
   },
@@ -25,8 +26,9 @@
     "name": "Combo Tiết Kiệm Gia Đình",
     "price": 245000,
     "category": "Combo",
-    "description": "4 miếng gà, 2 burger, 2 khoai và 3 nước.",
+    "description": "Bữa ăn trọn vị gồm gà rán, burger, khoai tây chiên và nước giải khát cho cả nhà.",
     "featured": true,
+    "badge": "TIẾT KIỆM",
     "imageKey": "combo",
     "objectPosition": "center"
   },
@@ -34,10 +36,86 @@
     "id": 4,
     "name": "Khoai Tây Chiên Cỡ Lớn",
     "price": 35000,
-    "category": "Khoai Tây",
-    "description": "Khoai tây chiên vàng ruộm, giòn tan.",
+    "category": "Thức ăn nhẹ",
+    "description": "Khoai tây cắt sợi chiên vàng ruộm, giòn nhẹ và dùng ngon nhất khi còn nóng.",
     "featured": true,
     "imageKey": "fries",
     "objectPosition": "center"
+  },
+  {
+    "id": 5,
+    "name": "Burger Gà Giòn Sốt Cay",
+    "price": 59000,
+    "category": "Món mới",
+    "description": "Phi-lê gà giòn rụm cùng sốt cay dịu, xà lách tươi trong lớp bánh mềm thơm.",
+    "badge": "MỚI",
+    "imageKey": "burger",
+    "objectPosition": "center"
+  },
+  {
+    "id": 6,
+    "name": "Gà Rán Sốt Mật Ong",
+    "price": 85000,
+    "category": "Món mới",
+    "description": "Gà rán phủ sốt mật ong ngọt nhẹ, thơm béo và cân bằng cùng lớp vỏ giòn.",
+    "badge": "MỚI",
+    "imageKey": "friedChicken",
+    "objectPosition": "center"
+  },
+  {
+    "id": 7,
+    "name": "Combo Burger Cá Giòn",
+    "price": 89000,
+    "category": "Combo",
+    "description": "Burger cá chiên xù dùng kèm khoai tây chiên và một phần nước giải khát.",
+    "imageKey": "combo",
+    "objectPosition": "center"
+  },
+  {
+    "id": 8,
+    "name": "Gà Rán Truyền Thống (3 Miếng)",
+    "price": 109000,
+    "category": "Gà rán",
+    "description": "Ba miếng gà tẩm ướp theo công thức truyền thống, lớp vỏ vàng giòn hấp dẫn.",
+    "imageKey": "friedChicken",
+    "objectPosition": "center"
+  },
+  {
+    "id": 9,
+    "name": "Burger Tôm Giòn",
+    "price": 69000,
+    "category": "Burger",
+    "description": "Tôm chiên giòn, rau tươi và sốt mayonnaise trong bánh burger mềm thơm.",
+    "imageKey": "burger",
+    "objectPosition": "center"
+  },
+  {
+    "id": 10,
+    "name": "Khoai Tây Lắc Phô Mai",
+    "price": 39000,
+    "category": "Thức ăn nhẹ",
+    "description": "Khoai tây giòn nóng phủ bột phô mai thơm béo, phù hợp dùng kèm mọi món chính.",
+    "badge": "YÊU THÍCH",
+    "imageKey": "fries",
+    "objectPosition": "center"
+  },
+  {
+    "id": 11,
+    "name": "Pepsi Không Đường",
+    "price": 22000,
+    "category": "Thức uống",
+    "description": "Nước giải khát mát lạnh không đường, giúp bữa ăn thêm cân bằng và sảng khoái.",
+    "imageKey": "combo",
+    "objectPosition": "82% center"
+  },
+  {
+    "id": 12,
+    "name": "Trà Chanh Tươi",
+    "price": 29000,
+    "category": "Thức uống",
+    "description": "Trà thanh nhẹ hòa cùng vị chanh tươi mát, dùng ngon nhất với đá lạnh.",
+    "badge": "MỚI",
+    "imageKey": "combo",
+    "objectPosition": "82% center"
   }
 ]

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import heroImage from '../assets/foods/hero-food.jpg';
 
 const Banner = () => (
@@ -11,8 +12,8 @@ const Banner = () => (
           công thức tẩm ướp độc quyền chỉ có tại TaloFood.
         </p>
         <div className="hero-section__actions">
-          <a className="button button--dark-red" href="#menu">ĐẶT MÓN NGAY</a>
-          <a className="button button--outline-light" href="#menu">XEM MENU</a>
+          <Link className="button button--dark-red" to="/products">ĐẶT MÓN NGAY</Link>
+          <Link className="button button--outline-light" to="/products">XEM MENU</Link>
         </div>
       </div>
       <div className="hero-section__media">
