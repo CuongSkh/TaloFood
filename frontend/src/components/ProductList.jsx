@@ -1,36 +1,11 @@
-// src/components/ProductList.jsx
-import { ProductCard } from './ProductCard';
+import ProductCard from './ProductCard';
 
-export const ProductList = ({ products }) => {
-  if (!products || products.length === 0) {
-    return (
-      <p style={{ padding: '32px', textAlign: 'center', color: '#888', fontStyle: 'italic' }}>
-        No products found for the selected filters.
-      </p>
-    );
-  }
+const ProductList = ({ products }) => (
+  <div className="product-grid">
+    {products.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ))}
+  </div>
+);
 
-  return (
-    <div
-      style={{
-        marginTop: '16px',
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '20px',
-        justifyContent: 'flex-start'
-      }}
-    >
-      {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          id={product.id} // Bổ sung truyền id cực kỳ quan trọng
-          name={product.name}
-          price={product.price}
-          category={product.category}
-          imageUrl={product.imageUrl}
-          description={product.description}
-        />
-      ))}
-    </div>
-  );
-};
+export default ProductList;

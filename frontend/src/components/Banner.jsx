@@ -1,31 +1,25 @@
-// src/components/Banner.jsx
-import { Link } from 'react-router-dom';
+import heroImage from '../assets/foods/hero-food.jpg';
 
-const Banner = ({ subtitle, buttonText }) => {
-  return (
-    <section style={{ padding: '40px 24px', backgroundColor: '#f5f5f5', textAlign: 'left', borderRadius: '8px', marginBottom: '20px' }}>
-      <h2 style={{ fontSize: '32px', margin: '0 0 12px 0', color: '#222' }}>{subtitle}</h2>
-      <p style={{ fontSize: '16px', color: '#666', marginBottom: '20px' }}>
-        Discover our latest products, best deals, and exclusive offers tailored just for you.
-      </p>
-      <Link 
-        to="/products" 
-        style={{
-          backgroundColor: '#1976d2', 
-          color: '#fff',
-          padding: '10px 20px',
-          textDecoration: 'none',
-          borderRadius: '4px',
-          display: 'inline-block',
-          fontSize: '14px',
-          fontWeight: 'bold',
-          cursor: 'pointer'
-        }}
-      >
-        {buttonText || 'Shop Now'}
-      </Link>
-    </section>
-  );
-};
+const Banner = () => (
+  <section className="hero-section">
+    <div className="container hero-section__inner">
+      <div className="hero-section__content">
+        <p className="eyebrow">Hương vị trứ danh</p>
+        <h1>GÀ RÁN GIÒN RỤM<br />BURGER ĐẬM VỊ</h1>
+        <p>
+          Trải nghiệm hương vị thức ăn nhanh đỉnh cao với nguồn nguyên liệu tươi sạch,
+          công thức tẩm ướp độc quyền chỉ có tại TaloFood.
+        </p>
+        <div className="hero-section__actions">
+          <a className="button button--dark-red" href="#menu">ĐẶT MÓN NGAY</a>
+          <a className="button button--outline-light" href="#menu">XEM MENU</a>
+        </div>
+      </div>
+      <div className="hero-section__media">
+        <img src={heroImage} alt="Burger và gà rán TaloFood" />
+      </div>
+    </div>
+  </section>
+);
 
 export default Banner;

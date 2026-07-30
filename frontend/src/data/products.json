@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "Gà Rán Giòn Cay (2 Miếng)",
+    "price": 79000,
+    "category": "Gà Rán",
+    "description": "Phần gà truyền thống tẩm bột cay giòn tan.",
+    "featured": true,
+    "badge": "HOT",
+    "imageKey": "friedChicken",
+    "objectPosition": "center"
+  },
+  {
+    "id": 2,
+    "name": "Burger Bò Phô Mai Đặc Biệt",
+    "price": 65000,
+    "category": "Burger",
+    "description": "Thịt bò nhập khẩu kết hợp cùng phô mai tan chảy.",
+    "featured": true,
+    "imageKey": "burger",
+    "objectPosition": "center"
+  },
+  {
+    "id": 3,
+    "name": "Combo Tiết Kiệm Gia Đình",
+    "price": 245000,
+    "category": "Combo",
+    "description": "4 miếng gà, 2 burger, 2 khoai và 3 nước.",
+    "featured": true,
+    "imageKey": "combo",
+    "objectPosition": "center"
+  },
+  {
+    "id": 4,
+    "name": "Khoai Tây Chiên Cỡ Lớn",
+    "price": 35000,
+    "category": "Khoai Tây",
+    "description": "Khoai tây chiên vàng ruộm, giòn tan.",
+    "featured": true,
+    "imageKey": "fries",
+    "objectPosition": "center"
+  }
+]
