@@ -1,13 +1,7 @@
 import { Link } from 'react-router-dom';
-import friedChicken from '../assets/foods/fried-chicken-menu.jpg';
-import burger from '../assets/foods/burger-menu.jpg';
-import combo from '../assets/foods/combo-menu.jpg';
-import fries from '../assets/foods/fries-menu.jpg';
+import { getProductImageUrl, handleProductImageError } from '../utils/productImage';
 
-const imageMap = { friedChicken, burger, combo, fries };
-
-export const getProductImage = (product) =>
-  product.imageUrl || imageMap[product.imageKey] || friedChicken;
+export const getProductImage = (product) => getProductImageUrl(product.imageUrl);
 
 export const formatPrice = (price) =>
   new Intl.NumberFormat('vi-VN', {
@@ -24,6 +18,7 @@ const ProductCard = ({ product }) => (
         src={getProductImage(product)}
         alt={product.name}
         loading="lazy"
+        onError={handleProductImageError}
         style={{ objectPosition: product.objectPosition || 'center' }}
       />
     </Link>
@@ -35,7 +30,7 @@ const ProductCard = ({ product }) => (
 
       <div className="product-card__footer">
         <strong>{formatPrice(product.price)}</strong>
-        <button type="button" aria-label={`Thêm ${product.name}`}>
+        <button type="button" aria-label={`Thêm ${product.name}`} disabled={!product.available}>
           <span aria-hidden="true">+</span>
         </button>
       </div>
