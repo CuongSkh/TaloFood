@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ProductList from './ProductList';
 
 const FeaturedProducts = ({ products }) => (
@@ -8,7 +9,7 @@ const FeaturedProducts = ({ products }) => (
           <h2>MÓN NGON PHẢI THỬ</h2>
           <p>Khám phá những hương vị được yêu thích nhất tại hệ thống TaloFood.</p>
         </div>
-        <a href="#menu">Xem tất cả →</a>
+        <Link to="/products">Xem tất cả →</Link>
       </div>
       <ProductList products={products} />
     </div>
