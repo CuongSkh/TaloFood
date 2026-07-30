@@ -5,8 +5,8 @@ import BrandLogo from './BrandLogo';
 const navItems = [
   { id: 'home', label: 'Trang chủ', to: '/', type: 'route', end: true },
   { id: 'menu', label: 'Menu', to: '/products', type: 'route' },
-  { id: 'promotion', label: 'Khuyến mãi', to: '/#newsletter', type: 'link' },
-  { id: 'about', label: 'Về TaloFood', to: '/#features', type: 'link' },
+  { id: 'blog', label: 'Blog', to: '/blog', type: 'route' },
+  { id: 'about', label: 'About', to: '/about', type: 'route' },
   { id: 'contact', label: 'Liên hệ', to: '/#footer', type: 'link' },
 ];
 

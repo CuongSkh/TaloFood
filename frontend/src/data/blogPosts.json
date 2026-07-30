@@ -1,0 +1,123 @@
+[
+  {
+    "id": 1,
+    "title": "Review Gà rán giòn cay TaloFood",
+    "excerpt": "Lớp vỏ giòn rụm, phần thịt mềm và vị cay vừa đủ khiến món gà này trở thành lựa chọn dễ ăn trong nhiều dịp.",
+    "imageKey": "friedChicken",
+    "publishedAt": "2026-07-20",
+    "category": "Review món ăn",
+    "featured": true,
+    "content": [
+      {"type":"paragraph","text":"Gà rán giòn cay là một trong những món dễ tạo ấn tượng nhất tại TaloFood. Món ăn có lớp vỏ vàng giòn, phần thịt bên trong vẫn mềm và giữ được độ ẩm khi dùng nóng."},
+      {"type":"heading","text":"Điểm nổi bật của lớp vỏ"},
+      {"type":"paragraph","text":"Lớp bột được chiên đến độ giòn rõ nhưng không quá dày. Gia vị bám đều trên bề mặt, tạo vị mặn nhẹ và cay vừa phải, phù hợp với cả người mới thử món cay."},
+      {"type":"image","imageKey":"friedChicken","alt":"Gà rán giòn tại TaloFood"},
+      {"type":"heading","text":"Phần thịt bên trong"},
+      {"type":"paragraph","text":"Phần thịt có độ mềm, không bị khô và dễ tách khỏi xương. Khi ăn ngay sau khi chế biến, lớp vỏ và phần thịt tạo độ tương phản rõ ràng, giúp món ăn không bị ngấy."},
+      {"type":"heading","text":"Nên dùng cùng món gì?"},
+      {"type":"list","items":["Khoai tây chiên hoặc khoai lắc","Trà chanh hoặc nước ngọt mát lạnh","Sốt chua ngọt hoặc sốt cay nhẹ"]},
+      {"type":"paragraph","text":"Đây là lựa chọn phù hợp cho bữa trưa nhanh, bữa tối cùng bạn bè hoặc phần ăn chia sẻ trong gia đình."}
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Combo Đủ Đầy – Sum Vầy cùng TaloFood",
+    "excerpt": "Khám phá hai lựa chọn combo nhiều món, phù hợp cho gia đình và nhóm bạn muốn dùng một bữa ăn trọn vị.",
+    "imageKey": "combo",
+    "publishedAt": "2026-07-18",
+    "category": "Review món ăn",
+    "featured": false,
+    "content": [
+      {"type":"paragraph","text":"Sau những ngày học tập và làm việc bận rộn, một bữa ăn ngon cùng gia đình hoặc bạn bè luôn là cách đơn giản để mọi người gần nhau hơn. TaloFood giới thiệu hai lựa chọn Combo Đủ Đầy và Combo Sum Vầy với nhiều món quen thuộc, khẩu phần hợp lý và dễ chia sẻ."},
+      {"type":"heading","text":"Combo Đủ Đầy"},
+      {"type":"paragraph","text":"Combo Đủ Đầy phù hợp với hai người muốn thưởng thức nhiều món trong cùng một bữa ăn."},
+      {"type":"list","items":["Burger bò phô mai đậm vị","Hai miếng gà rán giòn cay","Một phần khoai tây chiên","Hai phần thức uống mát lạnh"]},
+      {"type":"image","imageKey":"combo","alt":"Combo gà rán và khoai tây TaloFood"},
+      {"type":"heading","text":"Combo Sum Vầy"},
+      {"type":"paragraph","text":"Combo Sum Vầy hướng đến nhóm bạn hoặc gia đình nhỏ muốn chia sẻ nhiều món hơn. Sự kết hợp giữa burger gà, gà rán, khoai tây và thức uống tạo nên một phần ăn đầy đặn nhưng vẫn dễ lựa chọn."},
+      {"type":"list","items":["Burger gà giòn","Ba miếng gà rán","Khoai tây chiên cỡ lớn","Hai phần thức uống"]},
+      {"type":"heading","text":"Hương vị có gì đáng thử?"},
+      {"type":"paragraph","text":"Gà rán có lớp vỏ giòn nhưng không quá dày, burger kết hợp bánh mềm, rau tươi và sốt vừa vị. Khoai tây chiên đóng vai trò món ăn kèm, giúp bữa ăn cân bằng và phù hợp để dùng chung."},
+      {"type":"heading","text":"Combo nào phù hợp với bạn?"},
+      {"type":"paragraph","text":"Combo Đủ Đầy phù hợp với hai người thích cả burger và gà rán. Combo Sum Vầy phù hợp với nhóm từ hai đến ba người hoặc gia đình nhỏ muốn ưu tiên nhiều phần gà hơn."},
+      {"type":"quote","text":"Một combo hợp lý không chỉ đủ no mà còn giúp mọi người dễ dàng chia sẻ nhiều hương vị trong cùng một bữa ăn."}
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Tháng này ăn Burger thật đã cùng TaloFood",
+    "excerpt": "Khám phá các dòng burger bò, burger gà và cách kết hợp món ăn kèm để có một bữa ăn nhanh nhưng vẫn đủ no.",
+    "imageKey": "burger",
+    "publishedAt": "2026-07-15",
+    "category": "Review món ăn",
+    "featured": false,
+    "content": [
+      {"type":"paragraph","text":"Một chiếc burger nóng hổi luôn là lựa chọn nhanh gọn cho những ngày bận rộn. Tại TaloFood, các dòng burger được kết hợp giữa bánh mềm, phần nhân đậm vị, rau tươi và sốt đặc trưng để tạo nên một bữa ăn tiện lợi nhưng vẫn đủ no."},
+      {"type":"heading","text":"Nhiều lựa chọn cho từng khẩu vị"},
+      {"type":"list","items":["Burger bò phô mai dành cho khách thích vị đậm đà","Burger gà giòn với lớp vỏ nhẹ và phần thịt mềm","Burger gà cay dành cho người thích vị cay rõ hơn","Burger hai tầng cho khẩu phần đầy đặn"]},
+      {"type":"image","imageKey":"burger","alt":"Burger và khoai tây chiên TaloFood"},
+      {"type":"heading","text":"Burger bò phô mai có gì đặc biệt?"},
+      {"type":"paragraph","text":"Phần nhân bò thơm, phô mai béo nhẹ và rau tươi tạo cảm giác cân bằng. Phần bánh mềm giúp món ăn dễ dùng hơn, trong khi sốt mang lại độ đậm vị vừa đủ."},
+      {"type":"heading","text":"Burger gà giòn dành cho người thích vị dễ ăn"},
+      {"type":"paragraph","text":"Burger gà giòn có lớp vỏ vàng nhẹ, phần thịt bên trong mềm. Khi kết hợp cùng rau và sốt, món ăn có hương vị hài hòa và phù hợp với nhiều độ tuổi."},
+      {"type":"heading","text":"Ăn cùng món gì sẽ ngon hơn?"},
+      {"type":"list","items":["Khoai tây chiên","Gà viên","Salad nhỏ","Trà chanh hoặc nước ngọt"]},
+      {"type":"paragraph","text":"Burger phù hợp cho học sinh, sinh viên, nhân viên văn phòng hoặc bất kỳ ai cần một bữa ăn nhanh, gọn và dễ lựa chọn."}
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Top món ăn nhẹ dễ gọi chung",
+    "excerpt": "Khoai tây chiên và các món ăn nhẹ là lựa chọn dễ chia sẻ khi đi cùng bạn bè hoặc gia đình.",
+    "imageKey": "fries",
+    "publishedAt": "2026-07-10",
+    "category": "Review món ăn",
+    "featured": false,
+    "content": [
+      {"type":"paragraph","text":"Món ăn nhẹ giúp bàn ăn đa dạng hơn và phù hợp để gọi chung. Đây cũng là lựa chọn hợp lý khi bạn chưa muốn dùng một phần ăn quá lớn."},
+      {"type":"heading","text":"Khoai tây chiên – lựa chọn quen thuộc"},
+      {"type":"paragraph","text":"Khoai tây chiên có lớp ngoài vàng giòn, phần ruột mềm và vị mặn nhẹ. Món dễ dùng cùng burger, gà rán hoặc chấm thêm sốt tùy khẩu vị."},
+      {"type":"image","imageKey":"fries","alt":"Khoai tây chiên giòn TaloFood"},
+      {"type":"heading","text":"Cách gọi món khi đi theo nhóm"},
+      {"type":"paragraph","text":"Với nhóm từ ba người, nên chọn hai món ăn nhẹ khác nhau để mọi người có thể thử nhiều hương vị mà không làm bữa ăn quá nặng."},
+      {"type":"list","items":["Khoai tây chiên để ăn kèm burger","Gà viên cho người thích món giòn","Salad nhỏ để cân bằng vị béo","Sốt chấm dùng chung"]}
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Thức uống nào hợp với gà rán?",
+    "excerpt": "Một thức uống mát, vị thanh hoặc có gas nhẹ sẽ giúp cân bằng cảm giác đậm vị của gà rán.",
+    "imageKey": "drink",
+    "publishedAt": "2026-07-06",
+    "category": "Review món ăn",
+    "featured": false,
+    "content": [
+      {"type":"paragraph","text":"Gà rán thường có vị đậm và lớp vỏ giòn, vì vậy thức uống đi kèm nên tạo cảm giác tươi mát và giúp bữa ăn cân bằng hơn."},
+      {"type":"heading","text":"Trà chanh – lựa chọn thanh nhẹ"},
+      {"type":"paragraph","text":"Trà chanh có vị chua dịu và hương thơm nhẹ, phù hợp với người không muốn thức uống quá ngọt. Vị thanh giúp giảm cảm giác béo sau khi dùng gà rán."},
+      {"type":"image","imageKey":"drink","alt":"Thức uống mát dùng cùng gà rán"},
+      {"type":"heading","text":"Nước có gas – lựa chọn quen thuộc"},
+      {"type":"paragraph","text":"Nước có gas tạo cảm giác sảng khoái và phù hợp khi ăn cùng món chiên. Tuy nhiên, nên chọn kích cỡ vừa đủ để không lấn át hương vị món chính."},
+      {"type":"heading","text":"Gợi ý kết hợp"},
+      {"type":"list","items":["Gà rán cay dùng cùng trà chanh","Burger bò dùng cùng nước có gas","Khoai tây chiên dùng cùng trà đào hoặc trà tắc"]}
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Món mới tháng này có đáng thử không?",
+    "excerpt": "Món mới mang đến cách kết hợp quen mà lạ, phù hợp với khách muốn đổi vị trong lần gọi món tiếp theo.",
+    "imageKey": "newDish",
+    "publishedAt": "2026-07-01",
+    "category": "Review món ăn",
+    "featured": false,
+    "content": [
+      {"type":"paragraph","text":"Món mới tháng này tập trung vào hương vị dễ tiếp cận nhưng vẫn có điểm nhấn riêng. Cách kết hợp gà giòn, burger và sốt giúp phần ăn quen thuộc trở nên mới mẻ hơn."},
+      {"type":"heading","text":"Điểm khác biệt nằm ở cách kết hợp"},
+      {"type":"paragraph","text":"Thay vì thay đổi hoàn toàn hương vị, món mới giữ lại những thành phần được yêu thích và bổ sung sốt hoặc cách trình bày mới. Điều này giúp khách hàng dễ thử mà không cảm thấy quá xa lạ."},
+      {"type":"image","imageKey":"newDish","alt":"Món mới gồm burger và gà giòn"},
+      {"type":"heading","text":"Ai nên thử?"},
+      {"type":"list","items":["Khách đã quen với các món bán chạy","Người muốn đổi vị trong bữa trưa","Nhóm bạn muốn gọi nhiều món để chia sẻ"]},
+      {"type":"paragraph","text":"Nếu bạn thích burger và gà rán nhưng muốn một trải nghiệm mới hơn, đây là lựa chọn đáng cân nhắc trong lần gọi món tiếp theo."}
+    ]
+  }
+]

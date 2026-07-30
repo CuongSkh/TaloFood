@@ -1,0 +1,3 @@
+import {Link} from 'react-router-dom'; import {getBlogImage} from '../data/blogImages';
+const d=v=>new Intl.DateTimeFormat('vi-VN').format(new Date(v));
+const BlogCard=({post})=><article className="blog-card"><Link className="blog-card__media" to={`/blog/${post.id}`}><img src={getBlogImage(post.imageKey)} alt={post.title}/></Link><div className="blog-card__body"><span className="blog-badge">{post.category}</span><h2><Link to={`/blog/${post.id}`}>{post.title}</Link></h2><p className="blog-date">{d(post.publishedAt)}</p><p className="blog-card__excerpt">{post.excerpt}</p><Link className="blog-read-more" to={`/blog/${post.id}`}>Đọc thêm →</Link></div></article>; export default BlogCard;

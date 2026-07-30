@@ -1,0 +1,3 @@
+import {Link} from 'react-router-dom'; import {getBlogImage} from '../data/blogImages';
+const d=v=>new Intl.DateTimeFormat('vi-VN').format(new Date(v));
+const FeaturedBlogPost=({post})=><article className="featured-post"><Link className="featured-post__media" to={`/blog/${post.id}`}><img src={getBlogImage(post.imageKey)} alt={post.title}/></Link><div className="featured-post__content"><span className="blog-badge">{post.category}</span><p className="blog-date">{d(post.publishedAt)}</p><h2><Link to={`/blog/${post.id}`}>{post.title}</Link></h2><p>{post.excerpt}</p><Link className="button button--primary" to={`/blog/${post.id}`}>Đọc thêm</Link></div></article>; export default FeaturedBlogPost;
