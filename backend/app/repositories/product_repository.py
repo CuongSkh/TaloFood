@@ -1,32 +1,47 @@
-import json
-from pathlib import Path
-from fastapi import HTTPException
-from app.core.config import DATA_FILE
+from sqlalchemy import func, or_, select
+from sqlalchemy.orm import Session, joinedload
+from app.models.category import Category
+from app.models.product import Product
 
 class ProductRepository:
-    def __init__(self, data_file: Path = DATA_FILE):
-        self.data_file = data_file
-        self.data_file.parent.mkdir(parents=True, exist_ok=True)
+    def list(self, db: Session, *, search=None, category=None, min_price=None, max_price=None,
+             available=None, featured=None, page=1, size=12):
+        filters = []
+        if category:
+            filters.append(Category.name == category)
+        if min_price is not None:
+            filters.append(Product.price >= min_price)
+        if max_price is not None:
+            filters.append(Product.price <= max_price)
+        if available is not None:
+            filters.append(Product.available == available)
+        if featured is not None:
+            filters.append(Product.featured == featured)
 
-    def read_all(self) -> list[dict]:
-        if not self.data_file.exists():
-            self.write_all([])
-            return []
-        try:
-            text = self.data_file.read_text(encoding="utf-8").strip()
-            if not text:
-                return []
-            data = json.loads(text)
-            if not isinstance(data, list):
-                raise ValueError("Product data must be a JSON array")
-            return data
-        except (OSError, json.JSONDecodeError, ValueError) as exc:
-            raise HTTPException(status_code=500, detail="Không thể đọc dữ liệu món ăn") from exc
+        base = select(Product).join(Product.category).where(*filters)
+        total = db.scalar(select(func.count()).select_from(base.subquery())) or 0
+        items = db.scalars(
+            base.options(joinedload(Product.category))
+            .order_by(Product.id)
+            .offset((page - 1) * size)
+            .limit(size)
+        ).all()
+        return list(items), total
 
-    def write_all(self, products: list[dict]) -> None:
-        try:
-            temp_file = self.data_file.with_suffix(".json.tmp")
-            temp_file.write_text(json.dumps(products, ensure_ascii=False, indent=2), encoding="utf-8")
-            temp_file.replace(self.data_file)
-        except OSError as exc:
-            raise HTTPException(status_code=500, detail="Không thể lưu dữ liệu món ăn") from exc
+    def get(self, db: Session, product_id: int):
+        return db.scalar(select(Product).options(joinedload(Product.category)).where(Product.id == product_id))
+
+    def create(self, db: Session, product: Product):
+        db.add(product)
+        db.commit()
+        db.refresh(product)
+        return self.get(db, product.id)
+
+    def update(self, db: Session, product: Product):
+        db.commit()
+        db.refresh(product)
+        return self.get(db, product.id)
+
+    def delete(self, db: Session, product: Product):
+        db.delete(product)
+        db.commit()
