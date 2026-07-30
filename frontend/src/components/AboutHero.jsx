@@ -1,0 +1,2 @@
+import heroImage from '../assets/about/about-hero.jpg';
+const AboutHero=()=> <section className="about-hero" style={{backgroundImage:`url(${heroImage})`}}><div className="container about-hero__content"><p className="eyebrow">Thương hiệu thức ăn nhanh dành cho người Việt</p><h1>VỀ TALOFOOD</h1><p>TaloFood mang đến những món ăn nhanh nóng hổi, tiện lợi và phù hợp với khẩu vị người Việt.</p></div></section>; export default AboutHero;

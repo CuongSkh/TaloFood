@@ -4,7 +4,7 @@ import commerceLogo from '../assets/bo cong thuong.gif';
 const footerColumns = [
   {
     title: 'DANH MỤC',
-    links: ['Thực đơn', 'Khuyến mãi', 'Cửa Hàng', 'Đặt hàng online'],
+    links: ['Thực đơn', 'Blog', 'Cửa Hàng', 'Đặt hàng online'],
   },
   {
     title: 'CHÍNH SÁCH',

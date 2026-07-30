@@ -1,0 +1,1 @@
+const BlogHero=()=> <section className="blog-hero"><div className="container blog-hero__inner"><p className="eyebrow">Góc ẩm thực</p><h1>BLOG TALOFOOD</h1><p>Khám phá những bài review món ăn, combo và hương vị đáng thử tại TaloFood.</p></div></section>; export default BlogHero;
