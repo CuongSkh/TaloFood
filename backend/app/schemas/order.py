@@ -12,8 +12,9 @@ class OrderCreate(BaseModel):
     def strip_text(cls, value): return value.strip() if isinstance(value, str) else value
     @field_validator('payment_method')
     @classmethod
-    def cod_only(cls, value):
-        if value != 'COD': raise ValueError('Session 11–12 chỉ hỗ trợ COD')
+    def validate_method(cls, value):
+        value = value.upper()
+        if value not in {'COD','STRIPE'}: raise ValueError('Chỉ hỗ trợ COD hoặc STRIPE')
         return value
 
 class OrderCancel(BaseModel):

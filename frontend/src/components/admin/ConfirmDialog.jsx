@@ -1,0 +1,1 @@
+export default function ConfirmDialog({open,title,message,onCancel,onConfirm,busy}){if(!open)return null;return <div className="confirm-backdrop"><div className="confirm-dialog"><h3>{title}</h3><p>{message}</p><div><button onClick={onCancel}>Hủy</button><button className="danger" onClick={onConfirm} disabled={busy}>{busy?'Đang xử lý...':'Xác nhận'}</button></div></div></div>}

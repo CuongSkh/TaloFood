@@ -30,6 +30,7 @@ class Order(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), index=True)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
     items = relationship('OrderItem', back_populates='order', cascade='all, delete-orphan')
+    payments = relationship('Payment', back_populates='order', cascade='all, delete-orphan')
 
 class OrderItem(Base):
     __tablename__ = 'order_items'

@@ -109,4 +109,5 @@ class ProductService:
         product = self.repository.get(db, product_id)
         if not product:
             raise HTTPException(status_code=404, detail='Không tìm thấy món ăn')
-        self.repository.delete(db, product)
+        product.available = False
+        self.repository.update(db, product)

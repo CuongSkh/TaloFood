@@ -13,6 +13,8 @@ from app.routers.products import router as products_router
 from app.routers.users import router as users_router
 from app.routers.cart import router as cart_router
 from app.routers.orders import router as orders_router
+from app.routers.payments import router as payments_router
+from app.routers.admin import router as admin_router
 
 logger = logging.getLogger('talofood')
 
@@ -30,7 +32,7 @@ async def lifespan(app: FastAPI):
 
 
 IMAGE_DIR.mkdir(parents=True, exist_ok=True)
-app = FastAPI(title='TaloFood API', version='4.0.0', lifespan=lifespan)
+app = FastAPI(title='TaloFood API', version='5.0.0', lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
@@ -45,6 +47,8 @@ app.include_router(categories_router)
 app.include_router(users_router)
 app.include_router(cart_router)
 app.include_router(orders_router)
+app.include_router(payments_router)
+app.include_router(admin_router)
 
 
 @app.get('/', tags=['System'])

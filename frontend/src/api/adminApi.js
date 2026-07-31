@@ -1,0 +1,21 @@
+import axiosClient from './axiosClient';
+export const adminApi={
+ overview:async()=>(await axiosClient.get('/admin/stats/overview')).data,
+ monthlyRevenue:async()=>(await axiosClient.get('/admin/stats/monthly-revenue')).data,
+ recentOrders:async()=>(await axiosClient.get('/admin/stats/recent-orders')).data,
+ topProducts:async()=>(await axiosClient.get('/admin/stats/top-products')).data,
+ orderStatus:async()=>(await axiosClient.get('/admin/stats/order-status')).data,
+ orders:async(params={})=>(await axiosClient.get('/admin/orders',{params})).data,
+ order:async(id)=>(await axiosClient.get(`/admin/orders/${id}`)).data,
+ updateOrderStatus:async(id,order_status)=>(await axiosClient.patch(`/admin/orders/${id}/status`,{order_status})).data,
+ updatePaymentStatus:async(id,payment_status)=>(await axiosClient.patch(`/admin/orders/${id}/payment-status`,{payment_status})).data,
+ users:async(params={})=>(await axiosClient.get('/admin/users',{params})).data,
+ user:async(id)=>(await axiosClient.get(`/admin/users/${id}`)).data,
+ updateUserStatus:async(id,is_active)=>(await axiosClient.patch(`/users/${id}/status`,{is_active})).data,
+ updateUserRole:async(id,role)=>(await axiosClient.patch(`/users/${id}/role`,{role})).data,
+ payments:async(params={})=>(await axiosClient.get('/admin/payments',{params})).data,
+ categories:async()=>(await axiosClient.get('/categories')).data,
+ createCategory:async(payload)=>(await axiosClient.post('/admin/categories',payload)).data,
+ updateCategory:async(id,payload)=>(await axiosClient.put(`/admin/categories/${id}`,payload)).data,
+ deleteCategory:async(id)=>(await axiosClient.delete(`/admin/categories/${id}`)).data,
+};

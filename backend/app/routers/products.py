@@ -53,4 +53,4 @@ def update_product(product_id: int, payload: ProductUpdate, db: Session = Depend
 @router.delete('/{product_id}', response_model=DeleteProductResponse)
 def delete_product(product_id: int, db: Session = Depends(get_db), _: User = Depends(require_admin)):
     service.delete(db, product_id)
-    return {'message': 'Đã xóa món ăn thành công'}
+    return {'message': 'Đã ngừng bán món ăn thành công'}

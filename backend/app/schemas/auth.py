@@ -20,13 +20,18 @@ class RegisterRequest(BaseModel):
 
 
 class LoginRequest(BaseModel):
-    email: EmailStr
+    # Login accepts the project's local seeded admin address (admin@talofood.local).
+    # Registration still uses EmailStr for normal customer email validation.
+    email: str = Field(min_length=3, max_length=254)
     password: str = Field(min_length=1, max_length=128)
 
     @field_validator('email')
     @classmethod
     def normalize_email(cls, value: str):
-        return value.strip().casefold()
+        normalized = value.strip().casefold()
+        if '@' not in normalized or normalized.startswith('@') or normalized.endswith('@'):
+            raise ValueError('Email không hợp lệ')
+        return normalized
 
 
 class TokenResponse(BaseModel):

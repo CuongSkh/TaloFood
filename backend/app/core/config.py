@@ -33,3 +33,9 @@ try:
     DELIVERY_FEE = __import__('decimal').Decimal(os.getenv('DELIVERY_FEE', '20000'))
 except Exception as exc:
     raise RuntimeError('DELIVERY_FEE phải là số hợp lệ.') from exc
+
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '').strip()
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '').strip()
+STRIPE_SUCCESS_URL = os.getenv('STRIPE_SUCCESS_URL', 'http://localhost:5173/payment/stripe/success').strip()
+STRIPE_CANCEL_URL = os.getenv('STRIPE_CANCEL_URL', 'http://localhost:5173/payment/stripe/cancel').strip()
+STRIPE_CURRENCY = (os.getenv('STRIPE_CURRENCY', 'vnd').strip() or 'vnd').lower()
