@@ -28,3 +28,8 @@ ALLOWED_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:5173']
 CATEGORIES = ('Món mới', 'Combo', 'Gà rán', 'Burger', 'Thức ăn nhẹ', 'Thức uống')
 ALLOWED_IMAGE_TYPES = {'image/jpeg', 'image/png', 'image/webp'}
 MAX_IMAGE_SIZE = 5 * 1024 * 1024
+
+try:
+    DELIVERY_FEE = __import__('decimal').Decimal(os.getenv('DELIVERY_FEE', '20000'))
+except Exception as exc:
+    raise RuntimeError('DELIVERY_FEE phải là số hợp lệ.') from exc

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import BrandLogo from './BrandLogo';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 
 const navItems = [
   { id: 'home', label: 'Trang chủ', to: '/', end: true },
@@ -32,6 +33,7 @@ const Header = () => {
   const accountRef = useRef(null);
   const navigate = useNavigate();
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { totalQuantity } = useCart();
   const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
@@ -90,15 +92,17 @@ const Header = () => {
                   <span>{user.email}</span>
                 </div>
                 <Link to="/profile" onClick={() => setAccountOpen(false)}>Tài khoản của tôi</Link>
+                <Link to="/orders" onClick={() => setAccountOpen(false)}>Đơn hàng của tôi</Link>
                 {isAdmin && <Link to="/admin" onClick={() => setAccountOpen(false)}>Quản trị</Link>}
                 <button type="button" onClick={handleLogout}>Đăng xuất</button>
               </div>
             )}
           </div>
 
-          <button type="button" className="icon-button icon-button--cart" aria-label="Giỏ hàng">
+          <Link to="/cart" className="icon-button icon-button--cart" aria-label="Giỏ hàng">
             <CartIcon />
-          </button>
+            {totalQuantity > 0 && <span>{totalQuantity > 99 ? '99+' : totalQuantity}</span>}
+          </Link>
           <button
             className={`menu-toggle${isOpen ? ' menu-toggle--open' : ''}`}
             type="button"
