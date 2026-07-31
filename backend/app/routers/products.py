@@ -4,6 +4,8 @@ from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile, 
 from sqlalchemy.orm import Session
 from app.core.config import ALLOWED_IMAGE_TYPES, IMAGE_DIR, MAX_IMAGE_SIZE
 from app.core.database import get_db
+from app.dependencies.auth import require_admin
+from app.models.user import User
 from app.schemas.product import DeleteProductResponse, ImageUploadResponse, PaginatedProductResponse, ProductCreate, ProductResponse, ProductUpdate
 from app.services.product_service import ProductService
 
@@ -21,7 +23,7 @@ def list_products(search: str | None = None, category: str | None = None,
                                  available=available, featured=featured, page=page, size=size)
 
 @router.post('/upload-image', response_model=ImageUploadResponse, status_code=status.HTTP_201_CREATED)
-async def upload_image(image_file: UploadFile = File(...)):
+async def upload_image(image_file: UploadFile = File(...), _: User = Depends(require_admin)):
     if image_file.content_type not in ALLOWED_IMAGE_TYPES:
         raise HTTPException(status_code=400, detail='Chỉ chấp nhận ảnh JPG, PNG hoặc WEBP')
     content = await image_file.read(MAX_IMAGE_SIZE + 1)
@@ -41,14 +43,14 @@ def get_product(product_id: int, db: Session = Depends(get_db)):
     return service.get(db, product_id)
 
 @router.post('', response_model=ProductResponse, status_code=status.HTTP_201_CREATED)
-def create_product(payload: ProductCreate, db: Session = Depends(get_db)):
+def create_product(payload: ProductCreate, db: Session = Depends(get_db), _: User = Depends(require_admin)):
     return service.create(db, payload)
 
 @router.put('/{product_id}', response_model=ProductResponse)
-def update_product(product_id: int, payload: ProductUpdate, db: Session = Depends(get_db)):
+def update_product(product_id: int, payload: ProductUpdate, db: Session = Depends(get_db), _: User = Depends(require_admin)):
     return service.update(db, product_id, payload)
 
 @router.delete('/{product_id}', response_model=DeleteProductResponse)
-def delete_product(product_id: int, db: Session = Depends(get_db)):
+def delete_product(product_id: int, db: Session = Depends(get_db), _: User = Depends(require_admin)):
     service.delete(db, product_id)
     return {'message': 'Đã xóa món ăn thành công'}
