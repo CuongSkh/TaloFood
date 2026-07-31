@@ -3,7 +3,7 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 from app.core.config import DATABASE_URL
 from app.core.database import Base
-from app.models import Category, Product, User  # noqa: F401
+from app.models import Category, Product, User, Cart, CartItem, Order, OrderItem  # noqa: F401
 
 config = context.config
 config.set_main_option('sqlalchemy.url', DATABASE_URL)

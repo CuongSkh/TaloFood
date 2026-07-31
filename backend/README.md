@@ -105,3 +105,51 @@ Frontend mặc định gọi `http://localhost:8000`. Có thể tạo `frontend/
 ```env
 VITE_API_BASE_URL=http://127.0.0.1:8000
 ```
+
+## Session 11–12: Giỏ hàng và đặt hàng COD
+
+### Cấu hình
+Thêm vào `backend/.env` nếu chưa có:
+
+```env
+DELIVERY_FEE=20000
+```
+
+### Migration
+
+```powershell
+cd backend
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+alembic upgrade head
+uvicorn app.main:app --reload
+```
+
+Migration `20260731_0003` tạo `carts`, `cart_items`, `orders`, `order_items` và giữ nguyên dữ liệu Product/User hiện có.
+
+### Cart API
+- `GET /cart`
+- `POST /cart/items`
+- `PATCH /cart/items/{item_id}`
+- `DELETE /cart/items/{item_id}`
+- `DELETE /cart`
+
+Tất cả endpoint yêu cầu Bearer token. Backend lấy user từ JWT và giá từ PostgreSQL.
+
+### Order API
+- `POST /orders`
+- `GET /orders/me`
+- `GET /orders/{order_id}`
+- `PATCH /orders/{order_id}/cancel`
+
+Session 11–12 chỉ hỗ trợ `COD`. Đơn mới có `payment_status=UNPAID` và `order_status=PENDING`. OrderItem lưu snapshot tên, ảnh và giá tại lúc đặt.
+
+### Test luồng COD
+1. Đăng ký hoặc đăng nhập Customer.
+2. Mở chi tiết món, chọn số lượng và thêm vào giỏ.
+3. Mở `/cart`, cập nhật số lượng hoặc xóa món.
+4. Mở `/checkout`, nhập thông tin giao hàng và chọn COD.
+5. Đặt hàng, kiểm tra trang thành công, `/orders` và `/orders/:id`.
+6. Hủy đơn khi trạng thái còn `PENDING` hoặc `CONFIRMED`.
+
+Không có VNPAY, PayPal, Stripe, voucher hoặc Admin Dashboard trong Session 11–12.
