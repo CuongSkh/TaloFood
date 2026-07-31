@@ -153,3 +153,95 @@ Session 11–12 chỉ hỗ trợ `COD`. Đơn mới có `payment_status=UNPAID` 
 6. Hủy đơn khi trạng thái còn `PENDING` hoặc `CONFIRMED`.
 
 Không có VNPAY, PayPal, Stripe, voucher hoặc Admin Dashboard trong Session 11–12.
+
+# Session 13–14: Stripe Test Mode và Admin
+
+## Cấu hình `.env`
+
+```env
+STRIPE_SECRET_KEY=sk_test_your_key
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
+STRIPE_SUCCESS_URL=http://localhost:5173/payment/stripe/success
+STRIPE_CANCEL_URL=http://localhost:5173/payment/stripe/cancel
+STRIPE_CURRENCY=vnd
+```
+
+Nếu chưa cấu hình Stripe, API COD và toàn bộ phần còn lại vẫn chạy. Endpoint tạo Stripe Checkout sẽ trả lỗi cấu hình rõ ràng.
+
+## Cài và migrate trên Windows PowerShell
+
+```powershell
+cd backend
+py -3.13 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+alembic upgrade head
+python -m app.seed_admin
+uvicorn app.main:app --reload
+```
+
+## Stripe Test Mode
+
+1. Tạo tài khoản Stripe và bật Test Mode.
+2. Lấy Secret key bắt đầu bằng `sk_test_` và đặt vào `.env`.
+3. Checkout chọn `Stripe Checkout Test Mode`.
+4. Dùng thẻ test `4242 4242 4242 4242`, ngày hết hạn tương lai và CVC bất kỳ 3 số.
+5. Stripe chuyển về `/payment/stripe/success?session_id=...`; frontend gọi backend verify trước khi hiển thị thành công.
+
+Webhook local tùy chọn với Stripe CLI:
+
+```powershell
+stripe listen --forward-to localhost:8000/payments/stripe/webhook
+```
+
+Sao chép `whsec_...` từ Stripe CLI vào `STRIPE_WEBHOOK_SECRET`.
+
+## Payment API
+
+```text
+POST /payments/stripe/create-session
+GET  /payments/stripe/verify
+POST /payments/stripe/cancel
+POST /payments/stripe/webhook
+GET  /payments/order/{order_id}
+```
+
+## Admin
+
+Tạo admin bằng:
+
+```powershell
+python -m app.seed_admin
+```
+
+Thông tin admin lấy từ `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_FULL_NAME` trong `.env`.
+
+Frontend admin:
+
+```text
+/admin
+/admin/products
+/admin/categories
+/admin/orders
+/admin/users
+/admin/payments
+```
+
+Admin API và statistics:
+
+```text
+GET /admin/stats/overview
+GET /admin/stats/monthly-revenue
+GET /admin/stats/recent-orders
+GET /admin/stats/top-products
+GET /admin/stats/order-status
+GET /admin/orders
+PATCH /admin/orders/{id}/status
+PATCH /admin/orders/{id}/payment-status
+GET /admin/users
+GET /admin/payments
+POST/PUT/DELETE /admin/categories
+```
+
+Không có PayPal hoặc VNPay trong Session 13–14.

@@ -13,7 +13,14 @@ def seed_admin() -> None:
     with SessionLocal() as db:
         existing = repository.get_by_email(db, ADMIN_EMAIL)
         if existing:
-            print(f'Admin đã tồn tại: {existing.email}. Không thay đổi mật khẩu hoặc dữ liệu hiện có.')
+            # Keep the seeded local admin synchronized with backend/.env.
+            # This makes rerunning the seed a predictable password reset for local development.
+            existing.full_name = ADMIN_FULL_NAME or 'TaloFood Admin'
+            existing.password_hash = hash_password(ADMIN_PASSWORD)
+            existing.role = 'ADMIN'
+            existing.is_active = True
+            db.commit()
+            print(f'Đã cập nhật admin: {existing.email}')
             return
         admin = User(
             full_name=ADMIN_FULL_NAME or 'TaloFood Admin',

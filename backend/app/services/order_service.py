@@ -21,7 +21,7 @@ class OrderService:
             for ci in cart.items:
                 if not ci.product or not ci.product.available: raise HTTPException(409,f'Món {ci.product.name if ci.product else ci.product_id} hiện không còn phục vụ')
                 subtotal += ci.product.price*ci.quantity
-            order=Order(order_code=f"TF{datetime.now():%Y%m%d}{uuid4().hex[:8].upper()}",user_id=user_id,receiver_name=payload.receiver_name,receiver_phone=payload.receiver_phone,delivery_address=payload.delivery_address,note=payload.note,subtotal=subtotal,delivery_fee=DELIVERY_FEE,discount_amount=0,total_amount=subtotal+DELIVERY_FEE,payment_method='COD',payment_status='UNPAID',order_status='PENDING')
+            order=Order(order_code=f"TF{datetime.now():%Y%m%d}{uuid4().hex[:8].upper()}",user_id=user_id,receiver_name=payload.receiver_name,receiver_phone=payload.receiver_phone,delivery_address=payload.delivery_address,note=payload.note,subtotal=subtotal,delivery_fee=DELIVERY_FEE,discount_amount=0,total_amount=subtotal+DELIVERY_FEE,payment_method=payload.payment_method,payment_status=('PENDING' if payload.payment_method=='STRIPE' else 'UNPAID'),order_status='PENDING')
             db.add(order); db.flush()
             for ci in cart.items:
                 p=ci.product; line=p.price*ci.quantity
