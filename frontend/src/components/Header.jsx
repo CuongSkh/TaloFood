@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import BrandLogo from './BrandLogo';
+import { useAuth } from '../context/AuthContext';
 
 const navItems = [
-  { id: 'home', label: 'Trang chủ', to: '/', type: 'route', end: true },
-  { id: 'menu', label: 'Menu', to: '/products', type: 'route' },
-  { id: 'blog', label: 'Blog', to: '/blog', type: 'route' },
-  { id: 'about', label: 'About', to: '/about', type: 'route' },
-  { id: 'contact', label: 'Liên hệ', to: '/contact', type: 'route' },
+  { id: 'home', label: 'Trang chủ', to: '/', end: true },
+  { id: 'menu', label: 'Menu', to: '/products' },
+  { id: 'blog', label: 'Blog', to: '/blog' },
+  { id: 'about', label: 'About', to: '/about' },
+  { id: 'contact', label: 'Liên hệ', to: '/contact' },
 ];
 
 const UserIcon = () => (
@@ -27,25 +28,37 @@ const CartIcon = () => (
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const accountRef = useRef(null);
+  const navigate = useNavigate();
+  const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+    const closeOnOutside = (event) => {
+      if (accountRef.current && !accountRef.current.contains(event.target)) setAccountOpen(false);
+    };
+    document.addEventListener('mousedown', closeOnOutside);
+    return () => document.removeEventListener('mousedown', closeOnOutside);
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    setAccountOpen(false);
+    navigate('/');
+  };
 
   return (
     <header className="site-header" id="top">
       <div className="container site-header__inner">
         <BrandLogo />
-
-        <nav
-          className={`main-nav${isOpen ? ' main-nav--open' : ''}`}
-          aria-label="Điều hướng chính"
-        >
+        <nav className={`main-nav${isOpen ? ' main-nav--open' : ''}`} aria-label="Điều hướng chính">
           {navItems.map((item) => (
             <NavLink
               key={item.id}
               to={item.to}
               end={item.end}
-              className={({ isActive }) =>
-                `main-nav__link${isActive ? ' main-nav__link--active' : ''}`
-              }
+              className={({ isActive }) => `main-nav__link${isActive ? ' main-nav__link--active' : ''}`}
               onClick={closeMenu}
             >
               {item.label}
@@ -54,14 +67,38 @@ const Header = () => {
         </nav>
 
         <div className="header-actions" aria-label="Tài khoản và giỏ hàng">
-          <button type="button" className="icon-button" aria-label="Tài khoản">
-            <UserIcon />
-          </button>
+          <div className="account-menu" ref={accountRef}>
+            {isAuthenticated ? (
+              <button
+                type="button"
+                className="account-trigger"
+                aria-expanded={accountOpen}
+                onClick={() => setAccountOpen((value) => !value)}
+              >
+                <span className="account-trigger__icon"><UserIcon /></span>
+                <span className="account-trigger__name">{user.full_name.split(' ').slice(-1)[0]}</span>
+              </button>
+            ) : (
+              <Link className="account-login-link" to="/login" aria-label="Đăng nhập">
+                <UserIcon /><span>Đăng nhập</span>
+              </Link>
+            )}
+            {isAuthenticated && accountOpen && (
+              <div className="account-dropdown">
+                <div className="account-dropdown__identity">
+                  <strong>{user.full_name}</strong>
+                  <span>{user.email}</span>
+                </div>
+                <Link to="/profile" onClick={() => setAccountOpen(false)}>Tài khoản của tôi</Link>
+                {isAdmin && <Link to="/admin" onClick={() => setAccountOpen(false)}>Quản trị</Link>}
+                <button type="button" onClick={handleLogout}>Đăng xuất</button>
+              </div>
+            )}
+          </div>
 
           <button type="button" className="icon-button icon-button--cart" aria-label="Giỏ hàng">
             <CartIcon />
           </button>
-
           <button
             className={`menu-toggle${isOpen ? ' menu-toggle--open' : ''}`}
             type="button"
@@ -69,9 +106,7 @@ const Header = () => {
             aria-expanded={isOpen}
             onClick={() => setIsOpen((value) => !value)}
           >
-            <span />
-            <span />
-            <span />
+            <span /><span /><span />
           </button>
         </div>
       </div>

@@ -1,10 +1,11 @@
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 
+
 class UserCreate(BaseModel):
     full_name: str = Field(min_length=2, max_length=120)
     email: EmailStr
-    password: str = Field(min_length=6, max_length=128)
+    password: str = Field(min_length=8, max_length=128)
     phone: str | None = Field(default=None, max_length=30)
     role: str = 'CUSTOMER'
     is_active: bool = True
@@ -23,9 +24,36 @@ class UserCreate(BaseModel):
     @classmethod
     def validate_role(cls, value: str):
         value = value.strip().upper()
-        if value not in {'CUSTOMER', 'ADMIN', 'SHIPPER'}:
+        if value not in {'CUSTOMER', 'ADMIN'}:
             raise ValueError('Role không hợp lệ')
         return value
+
+
+class UserUpdateProfile(BaseModel):
+    full_name: str | None = Field(default=None, min_length=2, max_length=120)
+    phone: str | None = Field(default=None, max_length=30)
+
+    @field_validator('full_name', 'phone', mode='before')
+    @classmethod
+    def strip_text(cls, value):
+        return value.strip() if isinstance(value, str) else value
+
+
+class UserStatusUpdate(BaseModel):
+    is_active: bool
+
+
+class UserRoleUpdate(BaseModel):
+    role: str
+
+    @field_validator('role')
+    @classmethod
+    def validate_role(cls, value: str):
+        value = value.strip().upper()
+        if value not in {'CUSTOMER', 'ADMIN'}:
+            raise ValueError('Role không hợp lệ')
+        return value
+
 
 class UserResponse(BaseModel):
     id: int
@@ -37,6 +65,7 @@ class UserResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
     model_config = ConfigDict(from_attributes=True)
+
 
 class PaginatedUserResponse(BaseModel):
     items: list[UserResponse]

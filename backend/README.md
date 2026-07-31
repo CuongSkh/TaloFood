@@ -1,22 +1,31 @@
-# TaloFood Backend — Session 8
+# TaloFood Backend — Session 9–10
 
-Backend FastAPI sử dụng PostgreSQL + SQLAlchemy. `data/products.json` chỉ còn dùng làm dữ liệu seed ban đầu; Product CRUD đọc và ghi PostgreSQL.
+FastAPI + PostgreSQL + SQLAlchemy + JWT Authentication cho TaloFood.
 
-## 1. Chuẩn bị PostgreSQL
+## Yêu cầu
 
-Khởi động PostgreSQL và tạo database:
+- Windows 11
+- Python 3.13
+- PostgreSQL đang chạy
+- Database `talofood_db` đã được tạo
 
-```sql
-CREATE DATABASE talofood_db;
-```
+## Cấu hình `.env`
 
-Tạo `backend/.env`:
+Sao chép `.env.example` thành `.env` và cập nhật các giá trị local:
 
 ```env
 DATABASE_URL=postgresql+psycopg://postgres:your_password@localhost:5432/talofood_db
+JWT_SECRET_KEY=change_me_to_a_long_random_secret
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+ADMIN_EMAIL=admin@talofood.local
+ADMIN_PASSWORD=change_me
+ADMIN_FULL_NAME=TaloFood Admin
 ```
 
-## 2. Cài backend trên Windows PowerShell
+Không đưa `.env` lên Git. Không dùng secret mẫu khi triển khai production.
+
+## Cài đặt trên Windows PowerShell
 
 ```powershell
 cd backend
@@ -26,52 +35,73 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## 3. Tạo bảng bằng Alembic
+## Migration và dữ liệu seed
 
 ```powershell
 alembic upgrade head
-```
-
-Backend cũng có `Base.metadata.create_all()` khi startup để hỗ trợ môi trường học tập, nhưng nên chạy Alembic trước trên database mới.
-
-## 4. Seed dữ liệu
-
-```powershell
 python -m app.seed
+python -m app.seed_admin
 ```
 
-Seed là idempotent: tạo đúng 6 category và chỉ import 18 món từ JSON khi bảng products chưa có dữ liệu.
+- `app.seed` tạo an toàn 6 category và 18 món nếu database chưa có dữ liệu.
+- `app.seed_admin` lấy thông tin admin từ `.env`, không tạo trùng và không ghi đè mật khẩu admin đã tồn tại.
 
-## 5. Chạy backend
+## Chạy backend
 
 ```powershell
 uvicorn app.main:app --reload
 ```
 
-- API: http://localhost:8000
-- Swagger: http://localhost:8000/docs
-- Health: http://localhost:8000/health
+- API: `http://127.0.0.1:8000`
+- Swagger: `http://127.0.0.1:8000/docs`
+- Health: `http://127.0.0.1:8000/health`
 
-## 6. Chạy frontend
+## Luồng xác thực
+
+1. Đăng ký tại `POST /auth/register`.
+2. Đăng nhập tại `POST /auth/login` bằng JSON email/password.
+3. Sao chép `access_token` từ response.
+4. Trong Swagger bấm **Authorize** và nhập token Bearer.
+5. Kiểm tra phiên bằng `GET /auth/me`.
+
+## Phân quyền endpoint
+
+### Public
+
+- `GET /`, `GET /health`
+- `POST /auth/register`, `POST /auth/login`
+- `GET /products`, `GET /products/{id}`
+- `GET /categories`, `GET /categories/{id}`
+- `/images/*`
+
+### CUSTOMER hoặc ADMIN đã đăng nhập
+
+- `GET /auth/me`
+- `GET /users/me`
+- `PATCH /users/me`
+
+### Chỉ ADMIN
+
+- `POST /products`
+- `PUT /products/{id}`
+- `DELETE /products/{id}`
+- `POST /products/upload-image`
+- `POST /users`
+- `GET /users`
+- `GET /users/{id}`
+- `PATCH /users/{id}/status`
+- `PATCH /users/{id}/role`
+
+## Chạy frontend
 
 ```powershell
-cd ..\frontend
+cd frontend
 npm install
 npm run dev
 ```
 
-Frontend: http://localhost:5173
+Frontend mặc định gọi `http://localhost:8000`. Có thể tạo `frontend/.env`:
 
-Build production:
-
-```powershell
-npm run build
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
 ```
-
-## API Session 8
-
-- Products: `GET/POST /products`, `GET/PUT/DELETE /products/{id}`, `POST /products/upload-image`
-- Categories: `GET /categories`, `GET /categories/{id}`
-- Users: `POST /users`, `GET /users`, `GET /users/{id}`
-
-Session 8 chưa triển khai đăng nhập, JWT, phân quyền, giỏ hàng, đơn hàng hoặc thanh toán.
